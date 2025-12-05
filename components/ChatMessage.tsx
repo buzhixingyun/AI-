@@ -67,8 +67,8 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
   const attachments = message.attachments || [];
 
   return (
-    <div className={`flex w-full ${isBot ? 'justify-start' : 'justify-end'} mb-6 group animate-fade-in`}>
-      <div className={`flex max-w-[95%] md:max-w-[85%] gap-3 ${isBot ? 'flex-row' : 'flex-row-reverse'}`}>
+    <div className={`flex w-full ${isBot ? 'justify-start' : 'justify-end'} mb-4 md:mb-6 group animate-fade-in`}>
+      <div className={`flex max-w-[98%] md:max-w-[85%] gap-2 md:gap-3 ${isBot ? 'flex-row' : 'flex-row-reverse'}`}>
         
         {/* Avatar */}
         <div className={`
@@ -81,7 +81,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
 
         {/* Content Bubble */}
         <div className={`
-          flex flex-col gap-2 p-4 rounded-2xl shadow-sm min-w-0
+          flex flex-col gap-2 p-3 md:p-4 rounded-2xl shadow-sm min-w-0
           ${isBot 
             ? 'bg-gray-800/80 border border-gray-700/50 rounded-tl-none text-gray-100' 
             : 'bg-indigo-600 text-white rounded-tr-none'
