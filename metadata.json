@@ -1,0 +1,8 @@
+{
+  "name": "AI合集",
+  "description": "一个专业的 AI 聚合工作台。集成 Gemini 2.5 Flash、Pro 等多个免费强力模型。支持多模态对话（文本与视觉），实时流式模拟，采用响应式暗色主题设计。",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
