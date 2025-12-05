@@ -2,29 +2,50 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI 全能助手 | 免费多模型合集</title>
+    <!-- viewport-fit=cover 解决 iPhone 刘海屏白边问题，interactive-widget=resizes-content 解决安卓键盘遮挡问题 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content" />
+    <title>Nebula AI | 星云全能助手</title>
+    
+    <!-- PWA / Mobile Web App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#050510">
+    <meta name="format-detection" content="telephone=no">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
             },
             animation: {
-              'fade-in': 'fadeIn 0.3s ease-out',
-              'slide-up': 'slideUp 0.3s ease-out',
+              'fade-in': 'fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+              'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+              'slide-right': 'slideRight 0.3s ease-out',
+              'blob': 'blob 10s infinite',
             },
             keyframes: {
               fadeIn: {
-                '0%': { opacity: '0', transform: 'translateY(10px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
+                '0%': { opacity: '0', transform: 'translateY(10px) scale(0.98)' },
+                '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
               },
               slideUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              slideRight: {
+                '0%': { opacity: '0', transform: 'translateX(-20px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' },
+              },
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
               }
             }
           }
@@ -32,41 +53,69 @@
       }
     </script>
     <style>
-      /* Custom Scrollbar for a cleaner dark mode look */
+      /* 全局滚动条美化 */
       .custom-scrollbar::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        width: 4px;
+        height: 4px;
       }
       .custom-scrollbar::-webkit-scrollbar-track {
-        background: #0f1117; 
+        background: transparent; 
       }
       .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #2d3748; 
-        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.1); 
+        border-radius: 2px;
       }
       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #4a5568; 
+        background: rgba(255, 255, 255, 0.2); 
       }
       
-      /* Markdown Content Styles */
+      /* Markdown 内容样式 */
       .markdown-body table {
-        border-collapse: collapse;
+        border-collapse: separate;
+        border-spacing: 0;
         width: 100%;
         margin: 1em 0;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
       .markdown-body th {
-        background-color: rgba(55, 65, 81, 0.5);
-        padding: 0.5em;
-        border: 1px solid #4b5563;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 0.75em;
         font-weight: 600;
         text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
       .markdown-body td {
-        padding: 0.5em;
-        border: 1px solid #374151;
+        padding: 0.75em;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .markdown-body tr:last-child td {
+        border-bottom: none;
       }
       .markdown-body code {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-family: 'JetBrains Mono', monospace;
+      }
+      
+      /* 玻璃拟态背景工具类 */
+      .glass-panel {
+        background: rgba(20, 20, 30, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      
+      .glass-bubble {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      /* iOS 安全区域适配 */
+      body {
+        padding-bottom: env(safe-area-inset-bottom);
+        background-color: #050510;
       }
     </style>
   <script type="importmap">
@@ -85,7 +134,7 @@
 }
 </script>
 </head>
-  <body class="bg-[#0f1117] text-white">
-    <div id="root"></div>
+  <body class="bg-[#050510] text-gray-100 overflow-hidden fixed inset-0 selection:bg-indigo-500/30">
+    <div id="root" class="h-full w-full"></div>
   </body>
 </html>
